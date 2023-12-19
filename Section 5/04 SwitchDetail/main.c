@@ -2,6 +2,47 @@
 
 char *chartype;
 
+void findchartype2(char c) {
+    switch(c) {
+        case '\0':
+            chartype = "NULL";
+            break;
+        case '\t':
+            chartype = "Tab";
+            break;
+        case '\n':
+            chartype = "LineFeed";
+            break;
+        case '\r':
+            chartype = "Carriage Return";
+            break;
+        case ' ':
+            chartype = "Space";
+            break;
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+            chartype = "Number";
+            break;
+        case 'A' ... 'Z':
+            chartype = "Uppercase Letter";
+            break;
+        case 'a' ... 'z':
+            chartype = "Lowercase Letter";
+            break;
+        default:
+            chartype = "Character";
+            break;
+    }
+}
+
 void findchartype(int i) {
     switch(i) {
         case 0:
@@ -21,9 +62,6 @@ void findchartype(int i) {
             break;
         case 32:
             chartype = "Space";
-            break;
-        case 78:
-            chartype = "Backspace";
             break;
         case 48:
         case 49:
@@ -54,6 +92,11 @@ void showascii() {
     char c;
     for(i = 0; i <= 127; i++) {
         findchartype(i);
+        printf("%d = %c\t\t[%s]\n", i, i, chartype);
+    }
+
+    for(i = 0; i <= 127; i++) {
+        findchartype2(i);
         printf("%d = %c\t\t[%s]\n", i, i, chartype);
     }
 }
